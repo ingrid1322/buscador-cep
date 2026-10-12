@@ -11,6 +11,7 @@ body {
     min-height: 100vh;
     display: flex;
     justify-content: center;
+    align-items: flex-start;
     padding: 20px;
 }
 
@@ -22,7 +23,7 @@ body {
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
     display: grid;
     grid-template-columns: 1fr;
-    overflow: hidden;
+    margin-bottom: 20px;
 }
 
 @media (min-width: 768px) {
