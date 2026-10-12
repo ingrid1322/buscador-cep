@@ -2,43 +2,62 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: ´Segoe 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-    background-color: #0f172a;
-    color: #f8fafc;
+    background-color: #0f172a; /* Fundo azul escuro moderno */
+    color: #f8fafc; /* Texto claro */
     min-height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    padding: 20px;
+    align-items: center; /* Centraliza no PC */
+    padding: 16px;
 }
 
+/* ==========================================================================
+   2. CONTAINER PRINCIPAL (LAYOUT RESPONSIVO)
+   ========================================================================== */
 .container {
-    background-color: #1e293b;
+    background-color: #1e293b; /* Fundo dos cards */
     width: 100%;
     max-width: 900px;
     border-radius: 12px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
     display: grid;
-    grid-template-columns: 1fr;
-    margin-bottom: 20px;
+    grid-template-columns: 1fr; /* Uma coluna no mobile por padrão */
+    overflow: hidden;
 }
 
+/* Media Query: Transforma em duas colunas em computadores */
 @media (min-width: 768px) {
     .container {
         grid-template-columns: 1.5fr 1fr;
     }
 }
 
+/* Ajuste específico para celulares não cortarem o topo ou o rodapé */
+@media (max-width: 767px) {
+    body {
+        align-items: flex-start; /* Permite rolar a página no celular */
+    }
+    .container {
+        margin-top: 10px;
+        margin-bottom: 30px; /* Dá espaço para o histórico não colar no fim da tela */
+    }
+}
+
+/* ==========================================================================
+   3. SEÇÃO PRINCIPAL (BUSCADOR E FORMULÁRIO)
+   ========================================================================== */
 .search-box {
-    padding: 40px;
+    padding: 24px; /* Padding reduzido para telas menores */
     border-bottom: 1px solid #334155;
 }
 
 @media (min-width: 768px) {
     .search-box {
+        padding: 40px; /* Retorna ao padding ideal no PC */
         border-bottom: none;
         border-right: 1px solid #334155;
     }
@@ -47,7 +66,7 @@ body {
 .search-box h1 {
     font-size: 1.8rem;
     margin-bottom: 8px;
-    color: #38bdf8;
+    color: #38bdf8; /* Azul destaque */
 }
 
 .search-box p {
@@ -56,14 +75,16 @@ body {
     margin-bottom: 24px;
 }
 
+/* Grupo de Input e Botão */
 .input-group {
     display: flex;
     gap: 10px;
     margin-bottom: 16px;
 }
 
-.input-group input{
+.input-group input {
     flex: 1;
+    min-width: 0; /* Impede o input de empurrar o botão para fora */
     padding: 12px 16px;
     border-radius: 8px;
     border: 2px solid #334155;
@@ -87,17 +108,14 @@ body {
     font-weight: 600;
     font-size: 1rem;
     cursor: pointer;
-    transition: backgroud-color 0.2, transform 0.1s;
+    transition: background-color 0.2s, transform 0.1s;
 }
 
 .input-group button:hover {
     background-color: #7dd3fc;
 }
 
-.input-group button:active {
-    transform: scale(0.98);
-}
-
+/* Campos de Endereço Retornados */
 .address-fields {
     margin-top: 24px;
     display: flex;
@@ -118,6 +136,7 @@ body {
 }
 
 .field input {
+    width: 100%; /* Garante que os campos ocupem todo o espaço interno */
     padding: 10px 14px;
     border-radius: 6px;
     border: 1px solid #334155;
@@ -127,17 +146,27 @@ body {
     cursor: not-allowed;
 }
 
+/* Linha com Cidade e Estado lado a lado */
 .row {
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 12px;
 }
 
+/* ==========================================================================
+   4. SEÇÃO LATERAL (HISTÓRICO)
+   ========================================================================== */
 .history-box {
-    padding: 40px;
+    padding: 24px;
     background-color: #1e293b;
     display: flex;
     flex-direction: column;
+}
+
+@media (min-width: 768px) {
+    .history-box {
+        padding: 40px;
+    }
 }
 
 .history-box h2 {
@@ -151,24 +180,34 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    max-height: 300px;
+    max-height: 250px;
     overflow-y: auto;
     margin-bottom: 16px;
     padding-right: 5px;
 }
 
+/* Customização do Scrollbar */
+.history-list::-webkit-scrollbar {
+    width: 6px;
+}
 .history-list::-webkit-scrollbar-thumb {
     background: #334155;
     border-radius: 4px;
 }
 
+/* Card individual do histórico */
 .history-item {
     background-color: #0f172a;
     padding: 12px;
     border-radius: 6px;
     border-left: 4px solid #38bdf8;
     cursor: pointer;
-    transition: backgroud-color 0.2s;
+    transition: background-color 0.2s;
+}
+
+.history-item:hover {
+    background-color: #1e293b;
+    border-color: #7dd3fc;
 }
 
 .history-item p {
@@ -189,6 +228,7 @@ body {
     font-size: 0.9rem;
 }
 
+/* Botão Limpar Histórico */
 .btn-clear {
     padding: 10px;
     background-color: transparent;
@@ -197,7 +237,7 @@ body {
     border-radius: 6px;
     cursor: pointer;
     font-weight: 500;
-    transition: backgroud-color 0.2s, color 0.2s;
+    transition: background-color 0.2s, color 0.2s;
 }
 
 .btn-clear:hover {
@@ -205,6 +245,9 @@ body {
     color: #f8fafc;
 }
 
+/* ==========================================================================
+   5. CLASSES UTILITÁRIAS (CONTROLE DO JAVASCRIPT)
+   ========================================================================== */
 .error-text {
     color: #f87171;
     font-size: 0.85rem;
