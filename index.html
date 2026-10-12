@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador de CEP Avançado</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <main class="container">
+        <section class="search-box">
+            <h1>Buscador de CEP</h1>
+            <p>Digite um CEP com 8 dígitos para localizar o endereço.</p>
+
+            <div class="input-group">
+                <input type="text"
+                    type="text"
+                    id="cep-input"
+                    placeholder="Ex: 01001000"
+                    maxlength="8"
+                >
+                <button id="btn-buscar">Buscar</button>
+            </div>
+
+            <p id="error-message" class="error-text hidden"></p>
+
+            <form id="address-form" class="address-fields">
+                <div class="field">
+                    <label for="logradouro">Rua/Logradouro:</label>
+                    <input type="text" id="logradouro" readonly placeholder="...">
+                </div>
+                
+                <div class="field">
+                    <label for="bairro">Bairro:</label>
+                    <input type="text" id="bairro" readonly placeholder="...">
+                </div>
+
+                <div class="row">
+                    <div class="field">
+                        <label for="localidade">Cidade</label>
+                        <input type="text" id="localidade" readonly placeholder="...">
+                    </div>
+
+                    <div class="field">
+                        <label for="uf">Estado (UF):</label>
+                        <input type="text" id="uf" readonly placeholder="...">
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <section class="history-box">
+            <h2>Histórico de Busca</h2>
+            <div id="history-list" class="history-list">
+                <p class="empty-history">Nenhum CEP pesquisado ainda.</p>
+            </div>
+            <button id="btn-limpar-historico" class="btn-clear hidden">Limpar Histórico</button>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
